@@ -21,13 +21,25 @@ void System_Handle(void)
 	{
 		Flag = 1;
 		TimeOut_Record(&TIMEOUT_Para[0],Delay_Time);
-		Led_Open();
+		//Led_Open();
 		//Flag_P = 1;
 	}
 	if(1 == TimeOutDet_Check(&TIMEOUT_Para[0]))
 	{
 		//Flag_P = 0;
+		
 		#if 1
+
+		//TR0=1;
+		#endif
+		//Stop_Mode();
+		
+	}
+	#if 1
+	if((Key_Down())&&(P26 == 0))
+	{
+		//Led_Open();
+		//Led_Close();
 	  PCON |= 0x02;  //PCON 的 bit1 STOP 位写 1，配置 MCU 进入 STOP 模式	
     _nop_();       //至少需要 4 个_nop_()
     _nop_();
@@ -35,20 +47,12 @@ void System_Handle(void)
     _nop_();
 		_nop_();
     _nop_();
-		Led_Close();
-		//TR0=1;
-		#endif
-		//Stop_Mode();
+		//Led_Open();
 		
-	}
-	#if 0
-	if(Key_Down())
-	{
-		Led_Open();
 	}
 	else
 	{
-		Led_Close();
+		//Led_Close();
 	}
 	#endif
 	#endif
@@ -67,7 +71,7 @@ void int0()interrupt 0
 	//INT0R &= ~(1<<2); 	//关闭INT00上升沿中断
 	//Led_Open();
 	//PCON &= ~0x02;  //PCON 的 bit1 STOP 位写 1，配置 MCU 进入 STOP 模式
-	//P26 = ~P26;	
+	P26 = ~P26;	
 }
 
 void EX1() interrupt	2
