@@ -1,0 +1,11 @@
+".\Objects\STARTUP.obj",
+".\Objects\main.obj",
+".\Objects\system.obj",
+".\Objects\led.obj",
+".\Objects\exit_interrupt.obj",
+".\Objects\stop_mode.obj",
+".\Objects\TimeOut.obj",
+".\Objects\timer.obj",
+".\Objects\key.obj" 
+TO ".\Objects\SC92F7320_STOP" 
+PRINT(".\Listings\SC92F7320_STOP.m51") RAMSIZE(256) 

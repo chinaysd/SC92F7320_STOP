@@ -1,0 +1,53 @@
+C51 COMPILER V9.59.0.0   STOP_MODE                                                         09/12/2018 16:27:52 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE STOP_MODE
+OBJECT MODULE PLACED IN .\Objects\stop_mode.obj
+COMPILER INVOKED BY: D:\keil4\C51\BIN\C51.EXE ..\user\stop_mode\stop_mode.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\lib;..\us
+                    -er;..\user\led;..\user\exit;..\user\stop_mode;..\user\TimeOut;..\user\timer;..\user\key) DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\stop_mode.lst) TABS(2) OBJECT(.\Objects\stop_mode.obj)
+
+line level    source
+
+   1          #include "stop_mode.h"
+   2          #include "intrins.h"
+   3          
+   4          void Stop_Mode(void)
+   5          {
+   6   1        TR0    = 0;   //关闭定时器  
+   7   1        OPINX  = 0xC1;
+   8   1        OPREG &= ~(1<<7);//关闭看门狗
+   9   1        
+  10   1        INT0R |= 1<<2;  //打开INT00上升沿中断
+  11   1        
+  12   1        EINT0  = 1;   //打开INT0中断
+  13   1        PCON |= 0X02;
+  14   1        _nop_();
+  15   1        _nop_();
+  16   1        _nop_();
+  17   1        _nop_();
+  18   1        _nop_();
+  19   1        _nop_();
+  20   1        _nop_();
+  21   1        _nop_();
+  22   1        
+  23   1        OPINX  = 0xC1;
+  24   1        OPREG |= 1<<7;//打开看门狗  
+  25   1        TR0=1;
+  26   1      }
+  27          
+  28          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     33    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

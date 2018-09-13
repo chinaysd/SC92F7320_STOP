@@ -1,0 +1,1 @@
+"..\user\timer\timer.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(..\lib;..\user;..\user\led;..\user\exit;..\user\stop_mode;..\user\TimeOut;..\user\timer;..\user\key) DEBUG OBJECTEXTEND PRINT(.\Listings\timer.lst) TABS (2) OBJECT(.\Objects\timer.obj)

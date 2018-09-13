@@ -1,0 +1,1 @@
+"..\user\system.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(..\lib;..\user;..\user\led;..\user\exit;..\user\stop_mode;..\user\TimeOut;..\user\timer;..\user\key) DEBUG OBJECTEXTEND PRINT(.\Listings\system.lst) TABS (2) OBJECT(.\Objects\system.obj)

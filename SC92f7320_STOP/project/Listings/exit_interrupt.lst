@@ -1,0 +1,53 @@
+C51 COMPILER V9.59.0.0   EXIT_INTERRUPT                                                    09/12/2018 16:14:55 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE EXIT_INTERRUPT
+OBJECT MODULE PLACED IN .\Objects\exit_interrupt.obj
+COMPILER INVOKED BY: D:\keil4\C51\BIN\C51.EXE ..\user\exit\exit_interrupt.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\lib;..\us
+                    -er;..\user\led;..\user\exit;..\user\stop_mode;..\user\TimeOut;..\user\timer;..\user\key) DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\exit_interrupt.lst) TABS(2) OBJECT(.\Objects\exit_interrupt.obj)
+
+line level    source
+
+   1          #include "exit_interrupt.h"
+   2          
+   3          
+   4          
+   5          void Exit_Init(void)
+   6          {
+   7   1        P1CON &= ~0X04;     //中断IO口设置为高阻输入
+   8   1        P1PH  |= 0X04;     //中断IO口设置为高阻带上拉 
+   9   1        
+  10   1        //配置INT03上升沿中断、INT12/13下降沿中断、INT24/25双沿中断
+  11   1        //下降沿设置  
+  12   1        //INT0F = 0X0C ;    //xxxx 0000  0关闭 1使能
+  13   1        //INT1F = 0X0C ;    //xxxx xxxx  0关闭 1使能
+  14   1        //INT2F = 0X30 ;    //0000 xxxx  0关闭 1使能
+  15   1          //上升沿设置  
+  16   1        INT0R = 0X04 ;    //xxxx 0000  0关闭 1使能 
+  17   1        INT1R = 0X00 ;    //xxxx xxxx  0关闭 1使能
+  18   1        INT2R = 0X30 ;    //0000 xxxx  0关闭 1使能  
+  19   1        //外部中断优先级设置
+  20   1        IE  |= 0x05;  //0000 0x0x
+  21   1        IE1 |= 0x08;  //0000 x000  INT2使能
+  22   1        IP  |= 0X00;
+  23   1        IP1 |= 0X00;
+  24   1        EINT0 = 1;
+  25   1        
+  26   1      }
+  27          
+  28          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     24    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
